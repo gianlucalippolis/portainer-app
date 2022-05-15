@@ -1,14 +1,13 @@
 import React, { useEffect } from "react"; 
+import { connect } from 'react-redux';
+import {NavigationContainer, useNavigationContainerRef} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import LoginScreen from './src/LoginScreen';
 import SetupScreen from './src/SetupScreen';
 import HomeScreen from './src/screens/HomeScreen'; 
-import Containers from './src/screens/Containers';
-
-import {NavigationContainer} from '@react-navigation/native';
-import { connect } from 'react-redux';
-
-import {useNavigationContainerRef} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Images from './src/screens/Images';
+import Image from './src/screens/Image';
 
 interface Props {
     auth: any
@@ -37,7 +36,8 @@ const Navigator: React.FC<Props> = ({
                 {auth?.token ? (
                 <>
                     <Stack.Screen name="HomeScreen" component={HomeScreen} options={defaultOptions} />
-                    <Stack.Screen name="Containers" component={Containers} options={defaultOptions} />
+                    <Stack.Screen name="Images" component={Images} options={defaultOptions} />
+                    <Stack.Screen name="Image" component={Image} options={defaultOptions} />
                 </>
 
                 ) : (

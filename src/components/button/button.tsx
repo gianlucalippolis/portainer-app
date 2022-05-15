@@ -4,16 +4,46 @@ import { TouchableOpacity, StyleSheet } from 'react-native';
 interface Props {
     children: React.ReactNode;
     onPress: () => void;
+    type?: 'success' | 'info' | 'warning' | 'danger';
 }
 
 const Button: React.FC<Props> = ({
     children,
-    onPress
+    onPress,
+    type = 'info'
 }) => {
+
+    const color = () => {
+
+        let style; 
+
+        switch (type) {
+
+            case 'success':
+                style = { backgroundColor: '#00C853' };
+                break;
+            case 'info':
+                style = { backgroundColor: '#00a8ff' };
+                break;
+            case 'warning':
+                style = { backgroundColor: '#FF9800' };
+                break;
+            case 'danger':
+                style = { backgroundColor: '#F44336', textColor: '#fff' };
+                break;
+            default: 
+                style = { backgroundColor: '#00a8ff' }; 
+                break; 
+
+        }
+
+        return style; 
+
+    }
 
     return (
         <TouchableOpacity 
-            style={styles.button}
+            style={[color(), styles.button]}
             onPress={onPress}>
             {children}
         </TouchableOpacity>
@@ -24,8 +54,6 @@ const Button: React.FC<Props> = ({
 const styles = StyleSheet.create({
 
     button: {
-      backgroundColor: '#00a8ff',
-      textColor: '#fff',
       padding: 15,
       marginTop:20, 
       borderRadius: 5,

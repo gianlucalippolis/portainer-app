@@ -20,7 +20,7 @@ const Containers: React.FC<Props> = ({
 }) => {
 
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
-    const [containers, setContainers] = React.useState<any>([]);
+    const [images, setImages] = React.useState<any>([]);
 
     useEffect(() => {
 
@@ -32,7 +32,7 @@ const Containers: React.FC<Props> = ({
 
         }}).then((response) => {
 
-            setContainers(response.data);
+            setImages(response.data);
             setIsLoading(false);
 
         }).catch((error) => { 
@@ -42,7 +42,7 @@ const Containers: React.FC<Props> = ({
                 type: 'danger',
             });
             
-            setContainers([])
+            setImages([])
             setIsLoading(false);
         });
 
@@ -61,13 +61,18 @@ const Containers: React.FC<Props> = ({
 
                 <View style={{marginLeft:10, marginRight:10}}>
                     <Text style={styles.pageTitle}>Images - endpoint #{route.params.endpointID} </Text>
-                    {containers.map((container: any) => {
+                    {images.map((container: any) => {
 
                         console.log(container); 
 
                         return (
 
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate('Image', {
+                                    endpointID: route.params.endpointID,
+                                    data: container
+                                }); 
+                            }}>
                                 <InfoBox label={container.State} value={container.Image} />
                             </TouchableOpacity>
 

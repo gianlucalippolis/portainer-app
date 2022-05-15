@@ -79,7 +79,7 @@ const HomeScreen: React.FC<Props> = ({
                         <InfoBox label="URL" value={data.URL} /> 
                         <InfoBox label="CPU" value={data.Snapshots[0].TotalCPU} />
                         <InfoBox label="Memory" value={data.Snapshots[0].TotalMemory} />
-                        <TouchableOpacity onPress={() => navigation.navigate("Containers", {
+                        <TouchableOpacity onPress={() => navigation.navigate("Images", {
                             endpointID: data.Id
                         })}>
                             <InfoBox label="Images" value={data.Snapshots[0].ImageCount} />
